@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="da" style="font-size: 100%">
+<head>
+	<title>fcoo.dk - ui-button - Example</title>
+	<meta charset="iso-8859-1" />
+	<meta charset="iso-8859-1" /> <!-- OR "utf-8" -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta http-equiv='x-dns-prefetch-control' content='on'><!-- Hvorfor "on"? -->
+
+<!-- <meta http-equiv="refresh" content="30"> -->
+<!-- <meta name='description' content='150 words'> -->
+<!-- <meta name='subject' content='your website's subject'> -->
+<!-- <meta http-equiv='Expires' content='0'> -->
+	<meta name='copyright' content='FCOO'>
+	<meta name='owner' content='FCOO'>
+
+  <link  href="bower_components.css" rel="stylesheet">	
+  <link  href="../src/ui-button.css" rel="stylesheet">	
+	<style>
+		li { margin: 8px; }
+	</style>
+</head>
+
+<body>
+	<h2>anchor-elements</h2>
+	<a class="button">This is an anchor</a>
+	<a class="button icon-cancel">Cancel</a>
+	<a class="button-icon icon-arrow-up"></a>
+	<a class="button-icon big icon-arrow-up"></a>
+<br>
+<div class="button-container">
+	<a class="button-icon icon-digital-1"></a>
+	<a class="button-icon icon-digital-2"></a>
+	<a class="button-icon icon-digital-3"></a>
+	<a class="button-icon icon-digital-4"></a>
+</div>
+
+
+	<h2>button-elements</h2>
+	<button class="button">This is a button</button>
+	<button class="button icon-cancel">Cancel</button>
+	<button onclick="alert('Clicked')" class="button-icon icon-ok"></button>
+	<button disabled class="button icon-cancel">Disabled</button>
+<br>
+
+
+
+	<h2>button-container-POSITION</h2>
+<div class="button-container-topline">
+	<button class="button-icon icon-digital-7"></button>
+	<button class="button-icon icon-digital-8"></button>
+	<button class="button-icon icon-digital-9"></button>
+</div>
+<div class="button-container-innerline">
+	<button class="button-icon icon-digital-4"></button>
+	<button class="button-icon icon-digital-5"></button>
+	<button class="button-icon icon-digital-6"></button>
+</div>
+<div class="button-container-bottomline">
+	<button class="button-icon icon-digital-1"></button>
+	<button class="button-icon icon-digital-2"></button>
+	<button class="button-icon icon-digital-3"></button>
+</div>
+	
+	<h2>radio-button-container</h2>
+<div id="radio-container" class="radio-button-container">
+	<a class="button icon-meter-slow selected">Slow</a>
+	<a class="button icon-meter-medium">Medium</a>
+	<a class="button icon-meter-fast">Fast</a>
+</div>
+
+	<script src="bower_components.js"></script>
+	<script src="../src/ui-button.js"></script>
+	<script>
+		;( function($, L, window, document, undefined){ 
+			$(function() {	
+				$('#radio-container').radioButtonGroup( function( index ){console.log('selected index = ', index); } );
+			});
+		})(jQuery, L, this, document);		
+	</script>
+</body>
+</html>

@@ -1,0 +1,257 @@
+/***********************************************
+	ui-button.scss, 
+
+	(c) 2015, FCOO
+
+	https://github.com/FCOO/ui-button
+	https://github.com/FCOO
+
+
+************************************************/
+//BOURBON - http://bourbon.io/
+@import "../bower_components/bourbon/app/assets/stylesheets/bourbon";
+
+//MODERNIZR-MIXIN - https://github.com/danielguillan/modernizr-mixin
+@import "../bower_components/modernizr-mixin/stylesheets/modernizr";
+
+//MATHSASS - https://github.com/terkel/mathsass
+@import "../bower_components/mathsass/dist/math";
+
+@import "../bower_components/ui-common-scss/dist/ui-common-scss";
+@import "../bower_components/ui-icon-font/dist/ui-icon-font-embed";
+
+/**************************************************************
+There are tree types of buttons:
+1: Pure icon-button, 2: text-buttons and 3: text-button with icon
+
+1: <a class="button-icon [SIZE] icon-ICONNAME"></a>
+2: <a class="button>This is the button's text</a>
+3: <a class="button icon-ICONNAME">This is the button's text</a>
+
+where SIZE = 'small' or 'big' NB small not implemented
+and ICONNAME = the name of the icon
+
+The size of a button can be fixed by adding class 'button-width-Xrem'
+where X= number 1-9
+**************************************************************/
+button,
+a[class^="button"]  {
+
+	@include user-select(text);
+
+	display: inline-block;
+	
+	background: $background-color;
+
+	border       : $border-size solid $color-gray8;
+	border-radius: $button-border-radius;
+
+
+	font-style     : normal;
+	font-weight    : lighter;//normal;
+	text-decoration: none;
+	
+	color	: $color-black3;
+	cursor: pointer;
+
+	//Left-margin if the button is next to another button
+	& + a[class^="button"], & + button[class^="button"] {	margin-left: $margin; }
+
+	/******************************
+	button when disabled
+	*******************************/
+	&:disabled {
+		background-color: transparent;
+		border-color    : $color-gray3;
+		color           : $color-black6;
+		text-shadow     : none;
+		cursor          : default;
+	}
+
+	/******************************
+	button when not disabled
+	*******************************/
+	&:not(:disabled){		
+		text-shadow: none;
+
+		//Shadows
+		//Text button
+		&[class^="button "], &[class="button"]	{ 
+			box-shadow : $shadow-inside-and-outside;	//Normal shadow
+			&:focus {
+				box-shadow: $shadow-inside , $shadow-box-focus;
+			}			
+		}
+		
+		//Icon button
+		&.button-icon	{	
+			box-shadow : $shadow-inside; //Normal shadow = Only shadow inside the button
+		}
+
+		&:hover {
+			color     : black;
+			box-shadow: $shadow-hover; 
+		}
+
+		&:active, &[selected], &[class*=" selected"] {
+			color     : black;
+			box-shadow: $shadow-active; 
+		}
+		&:active														{ background: $button-selected-background-color;	}
+		&[selected], &[class*=" selected"]	{ background: $button-active-background-color;		}
+
+	} //End of normal/not disabled
+
+	/**********************************
+	Button with text and optional icon
+	**********************************/
+	&.button {
+		font-family: "MS Shell Dlg", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+		font-size: $font-size-input;
+		line-height: $font-size-input + rem(2px);
+
+		padding      : $padding;
+		padding-left : 2*$padding;
+		padding-right: 2*$padding;
+
+		white-space	: nowrap;
+		text-align	: center;
+
+		&:before {
+			@extend %icon-font-base;
+			font-size: $font-size-input;
+			margin     : 0;
+			padding    : 0;
+			margin-right: 2*$margin; //Adjust the icon margin to align it with the text
+		}
+
+		&.small {
+			$scale: 0.8;
+			font-size			: $font-size-input*$scale;
+			line-height		: $font-size-input*$scale + rem(2px);
+			padding				: $padding*$scale;
+			padding-left	: 2*$padding*$scale;
+			padding-right	: 2*$padding*$scale;
+
+			&:before {
+				font-size: $font-size-input*0.8;
+			}
+		}
+	}
+
+	/******************************
+	Button only with icon
+	*******************************/
+	&.button-icon  {
+		padding			: 0px;
+		text-align	: center;
+		box-sizing	: border-box;
+line-height	: $button-icon-normal-dim - 2*$border-size;	
+		
+		//Normal size
+		width		: $button-icon-normal-dim;
+		height	: $button-icon-normal-dim;
+
+		&:before { 
+			@extend %icon-font-base;
+			font-size		: $font-size-input;
+//			line-height	: $button-icon-normal-dim - 2*$border-size;	
+		}
+
+		//Big size
+		&.big { 
+			&:before { 
+				font-size		: $font-size-text-big;
+				line-height	: $button-icon-big-dim - 2*$border-size;	
+			}
+			width		: $button-icon-big-dim;
+			height	: $button-icon-big-dim;
+		}
+
+		//Small size
+		&.small { 
+			// No implemented
+		}
+	}
+
+	/**********************************************************************************
+	Button inside a div with class=button-container or radio-button-container
+	are displayed without margin.
+	The button-containers can also be part of a group.
+	To display the buttons inside a button-container as part of a greater group
+	add a postfix to the class-name
+		  2 2 2			
+		  8 8 8
+	1 7 XXXXX 7 3		
+	1 7 XXXXX 7 3		5 5 5 XXXXXX 6 6 6     
+	1 7 XXXXX	7 3		
+	    8 8 8
+			4 4 4
+	1: leftstack, 2: topline, 3: rightstack, 4: bottomline, 5: leftline, 6: rightline, 7: innerstack 8: innerline
+
+	Button inside a div with class=radio-button-container are displayed as radio-group
+	**********************************************************************************/
+	[class*='button-container'] & { 
+		display					: table-cell;
+		border-collapse	:	separate; 
+		border-spacing	:	0px 0px;
+		margin					:	0px !important;
+		border-radius		: 0px;
+		
+		&:first-child {	@include border-left-radius($button-border-radius);	}
+		&:last-child	{	@include border-right-radius($button-border-radius); }
+	}
+	
+	[class*='button-container-leftstack']	&	{	
+		@include border-right-radius(0px !important);	
+
+		&:first-child { border-bottom-left-radius: 0px !important; }
+		&:last-child	{ border-bottom-left-radius: $button-border-radius !important; }
+	}
+
+	[class*='button-container-rightstack'] & {	
+		@include border-left-radius(0px !important);	
+		&:first-child { border-top-right-radius: $button-border-radius !important; }
+		&:last-child	{ border-top-right-radius: 0px !important; }
+	}
+
+	[class*='-leftline']		&:last-child {	@include border-right-radius( 0px !important);	}
+	[class*='-rightline']		&:first-child {	@include border-left-radius( 0px !important);		}
+	[class*='-topline'] 		&							{	@include border-bottom-radius( 0px !important);	}
+	[class*='-bottomline']	&							{	@include border-top-radius( 0px !important);		}
+	[class*='-inner']				&							{	border-radius: 0px !important;									}
+
+	[class*='-leftstack']		&,
+	[class*='-rightstack']	&,
+	[class*='-innerstack']	&							{	display	:	inline-block !important;		}
+
+	//Fixed width: The size of a button can be fixed by adding class 'button-width-Xrem' where X= number 1-9
+	@for $i from 1 through 9 {
+		&.button-width-#{$i}rem { width: #{$i}rem; }
+	}
+	
+	//Modifications to the icons when displayed in a button
+	
+	//Change icon-color when mouseover for ok- and cancel-buttons 
+	&.icon-cancel:not(:disabled):hover:before	{ color:	$text-color-error;		}	
+	&.icon-ok:not(:disabled):hover:before			{ color:	$text-color-success;	}	
+
+
+
+
+	//If a icon needs to be 'transformed' it must be 'placed' in a <i> inside a <button class="button"> or <button class="button-icon">
+	i {
+		display: inline-block;
+	  @extend %icon-font-base;
+		&.transform-rotate-90				{ @include transform( rotate(90deg)	)	}
+		&.transform-rotate-180			{ @include transform( rotate(180deg))	}
+		&.transform-rotate-270			{ @include transform( rotate(270deg))	}
+		&.transform-flip-horizontal	{ @include transform( scale(-1, 1)	)	}
+		&.transform-flip-vertical		{ @include transform( scale(1, -1)	)	}
+	}
+
+} // End of a[class^="button"]
+
+/* If the icon need to have a different color when :hover and :active: Add the correct class-name */
+.hover-red:hover, .hover-red:active {color: $text-color-error;} 
+

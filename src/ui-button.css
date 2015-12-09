@@ -1,0 +1,329 @@
+/***********************************************
+	ui-button.scss, 
+
+	(c) 2015, FCOO
+
+	https://github.com/FCOO/ui-button
+	https://github.com/FCOO
+
+
+************************************************/
+/***********************************************
+	_ui-icon-font-embed.scss, the embed-version of ui-icon-font.scss
+
+	(c) 2015, FCOO
+
+	https://github.com/FCOO/ui-icon-font
+	https://github.com/FCOO
+
+	
+
+************************************************/
+@font-face {
+  font-family: 'icomoon';
+  src: url("fonts/icomoon.eot?lx1a9w");
+  src: url("fonts/icomoon.eot?lx1a9w#iefix") format("embedded-opentype"), url("fonts/icomoon.ttf?lx1a9w") format("truetype"), url("fonts/icomoon.woff?lx1a9w") format("woff"), url("fonts/icomoon.svg?lx1a9w#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+button.button:before,
+a[class^="button"].button:before, button.button-icon:before,
+a[class^="button"].button-icon:before, button i,
+a[class^="button"] i {
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 0.75rem;
+  display: inline-block;
+  text-decoration: inherit;
+  text-align: center; }
+
+/**************************************************************
+There are tree types of buttons:
+1: Pure icon-button, 2: text-buttons and 3: text-button with icon
+
+1: <a class="button-icon [SIZE] icon-ICONNAME"></a>
+2: <a class="button>This is the button's text</a>
+3: <a class="button icon-ICONNAME">This is the button's text</a>
+
+where SIZE = 'small' or 'big' NB small not implemented
+and ICONNAME = the name of the icon
+
+The size of a button can be fixed by adding class 'button-width-Xrem'
+where X= number 1-9
+**************************************************************/
+button,
+a[class^="button"] {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  display: inline-block;
+  background: #ececec;
+  border: 0.0625rem solid #a6a6a6;
+  border-radius: 0.1875rem;
+  font-style: normal;
+  font-weight: lighter;
+  text-decoration: none;
+  color: #3c3c3c;
+  cursor: pointer;
+  /******************************
+	button when disabled
+	*******************************/
+  /******************************
+	button when not disabled
+	*******************************/
+  /**********************************
+	Button with text and optional icon
+	**********************************/
+  /******************************
+	Button only with icon
+	*******************************/
+  /**********************************************************************************
+	Button inside a div with class=button-container or radio-button-container
+	are displayed without margin.
+	The button-containers can also be part of a group.
+	To display the buttons inside a button-container as part of a greater group
+	add a postfix to the class-name
+		  2 2 2			
+		  8 8 8
+	1 7 XXXXX 7 3		
+	1 7 XXXXX 7 3		5 5 5 XXXXXX 6 6 6     
+	1 7 XXXXX	7 3		
+	    8 8 8
+			4 4 4
+	1: leftstack, 2: topline, 3: rightstack, 4: bottomline, 5: leftline, 6: rightline, 7: innerstack 8: innerline
+
+	Button inside a div with class=radio-button-container are displayed as radio-group
+	**********************************************************************************/ }
+  button + a[class^="button"], button + button[class^="button"],
+  a[class^="button"] + a[class^="button"],
+  a[class^="button"] + button[class^="button"] {
+    margin-left: 0.125rem; }
+  button:disabled,
+  a[class^="button"]:disabled {
+    background-color: transparent;
+    border-color: #d8d8d8;
+    color: #787878;
+    text-shadow: none;
+    cursor: default; }
+  button:not(:disabled),
+  a[class^="button"]:not(:disabled) {
+    text-shadow: none; }
+    button:not(:disabled)[class^="button "], button:not(:disabled)[class="button"],
+    a[class^="button"]:not(:disabled)[class^="button "],
+    a[class^="button"]:not(:disabled)[class="button"] {
+      box-shadow: 0rem 0.125rem 0.0625rem white inset, 0rem -0.125rem 0.5rem white, 0rem 0.125rem 0.3125rem rgba(0, 0, 0, 0.1), 0rem 0.5rem 0.625rem rgba(0, 0, 0, 0.1); }
+      button:not(:disabled)[class^="button "]:focus, button:not(:disabled)[class="button"]:focus,
+      a[class^="button"]:not(:disabled)[class^="button "]:focus,
+      a[class^="button"]:not(:disabled)[class="button"]:focus {
+        box-shadow: 0rem 0.125rem 0.0625rem white inset, inset 0 0.0625rem 0.0625rem rgba(0, 0, 0, 0.075), 0 0 0.5rem rgba(102, 175, 233, 0.6); }
+    button:not(:disabled).button-icon,
+    a[class^="button"]:not(:disabled).button-icon {
+      box-shadow: 0rem 0.125rem 0.0625rem white inset; }
+    button:not(:disabled):hover,
+    a[class^="button"]:not(:disabled):hover {
+      color: black;
+      box-shadow: 0rem 0.125rem 0.0625rem white inset, 0px -0.125rem 1.25rem white, 0rem 0.125rem 0.3125rem rgba(0, 0, 0, 0.1), 0rem 0.5rem 0.625rem rgba(0, 0, 0, 0.1); }
+    button:not(:disabled):active, button:not(:disabled)[selected], button:not(:disabled)[class*=" selected"],
+    a[class^="button"]:not(:disabled):active,
+    a[class^="button"]:not(:disabled)[selected],
+    a[class^="button"]:not(:disabled)[class*=" selected"] {
+      color: black;
+      box-shadow: 0rem 0.0625rem 0.125rem rgba(0, 0, 0, 0.5) inset, 0rem -0.125rem 1.25rem white, 0rem 0.0625rem 0.3125rem rgba(0, 0, 0, 0.1), 0rem 0.125rem 0.625rem rgba(0, 0, 0, 0.1); }
+    button:not(:disabled):active,
+    a[class^="button"]:not(:disabled):active {
+      background: #c4c4c4; }
+    button:not(:disabled)[selected], button:not(:disabled)[class*=" selected"],
+    a[class^="button"]:not(:disabled)[selected],
+    a[class^="button"]:not(:disabled)[class*=" selected"] {
+      background: #d8d8d8; }
+  button.button,
+  a[class^="button"].button {
+    font-family: "MS Shell Dlg", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-size: 0.875rem;
+    line-height: 1rem;
+    padding: 0.1875rem;
+    padding-left: 0.375rem;
+    padding-right: 0.375rem;
+    white-space: nowrap;
+    text-align: center; }
+    button.button:before,
+    a[class^="button"].button:before {
+      font-size: 0.875rem;
+      margin: 0;
+      padding: 0;
+      margin-right: 0.25rem; }
+    button.button.small,
+    a[class^="button"].button.small {
+      font-size: 0.7rem;
+      line-height: 0.825rem;
+      padding: 0.15rem;
+      padding-left: 0.3rem;
+      padding-right: 0.3rem; }
+      button.button.small:before,
+      a[class^="button"].button.small:before {
+        font-size: 0.7rem; }
+  button.button-icon,
+  a[class^="button"].button-icon {
+    padding: 0px;
+    text-align: center;
+    box-sizing: border-box;
+    line-height: 1.3125rem;
+    width: 1.4375rem;
+    height: 1.4375rem; }
+    button.button-icon:before,
+    a[class^="button"].button-icon:before {
+      font-size: 0.875rem; }
+    button.button-icon.big,
+    a[class^="button"].button-icon.big {
+      width: 1.9375rem;
+      height: 1.9375rem; }
+      button.button-icon.big:before,
+      a[class^="button"].button-icon.big:before {
+        font-size: 1.25rem;
+        line-height: 1.8125rem; }
+  [class*='button-container'] button, [class*='button-container']
+  a[class^="button"] {
+    display: table-cell;
+    border-collapse: separate;
+    border-spacing: 0px 0px;
+    margin: 0px !important;
+    border-radius: 0px; }
+    [class*='button-container'] button:first-child, [class*='button-container']
+    a[class^="button"]:first-child {
+      border-bottom-left-radius: 0.1875rem;
+      border-top-left-radius: 0.1875rem; }
+    [class*='button-container'] button:last-child, [class*='button-container']
+    a[class^="button"]:last-child {
+      border-bottom-right-radius: 0.1875rem;
+      border-top-right-radius: 0.1875rem; }
+  [class*='button-container-leftstack'] button, [class*='button-container-leftstack']
+  a[class^="button"] {
+    border-bottom-right-radius: 0px !important;
+    border-top-right-radius: 0px !important; }
+    [class*='button-container-leftstack'] button:first-child, [class*='button-container-leftstack']
+    a[class^="button"]:first-child {
+      border-bottom-left-radius: 0px !important; }
+    [class*='button-container-leftstack'] button:last-child, [class*='button-container-leftstack']
+    a[class^="button"]:last-child {
+      border-bottom-left-radius: 0.1875rem !important; }
+  [class*='button-container-rightstack'] button, [class*='button-container-rightstack']
+  a[class^="button"] {
+    border-bottom-left-radius: 0px !important;
+    border-top-left-radius: 0px !important; }
+    [class*='button-container-rightstack'] button:first-child, [class*='button-container-rightstack']
+    a[class^="button"]:first-child {
+      border-top-right-radius: 0.1875rem !important; }
+    [class*='button-container-rightstack'] button:last-child, [class*='button-container-rightstack']
+    a[class^="button"]:last-child {
+      border-top-right-radius: 0px !important; }
+  [class*='-leftline'] button:last-child, [class*='-leftline']
+  a[class^="button"]:last-child {
+    border-bottom-right-radius: 0px !important;
+    border-top-right-radius: 0px !important; }
+  [class*='-rightline'] button:first-child, [class*='-rightline']
+  a[class^="button"]:first-child {
+    border-bottom-left-radius: 0px !important;
+    border-top-left-radius: 0px !important; }
+  [class*='-topline'] button, [class*='-topline']
+  a[class^="button"] {
+    border-bottom-left-radius: 0px !important;
+    border-bottom-right-radius: 0px !important; }
+  [class*='-bottomline'] button, [class*='-bottomline']
+  a[class^="button"] {
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important; }
+  [class*='-inner'] button, [class*='-inner']
+  a[class^="button"] {
+    border-radius: 0px !important; }
+  [class*='-leftstack'] button,
+  [class*='-rightstack'] button,
+  [class*='-innerstack'] button, [class*='-leftstack']
+  a[class^="button"],
+  [class*='-rightstack']
+  a[class^="button"],
+  [class*='-innerstack']
+  a[class^="button"] {
+    display: inline-block !important; }
+  button.button-width-1rem,
+  a[class^="button"].button-width-1rem {
+    width: 1rem; }
+  button.button-width-2rem,
+  a[class^="button"].button-width-2rem {
+    width: 2rem; }
+  button.button-width-3rem,
+  a[class^="button"].button-width-3rem {
+    width: 3rem; }
+  button.button-width-4rem,
+  a[class^="button"].button-width-4rem {
+    width: 4rem; }
+  button.button-width-5rem,
+  a[class^="button"].button-width-5rem {
+    width: 5rem; }
+  button.button-width-6rem,
+  a[class^="button"].button-width-6rem {
+    width: 6rem; }
+  button.button-width-7rem,
+  a[class^="button"].button-width-7rem {
+    width: 7rem; }
+  button.button-width-8rem,
+  a[class^="button"].button-width-8rem {
+    width: 8rem; }
+  button.button-width-9rem,
+  a[class^="button"].button-width-9rem {
+    width: 9rem; }
+  button.icon-cancel:not(:disabled):hover:before,
+  a[class^="button"].icon-cancel:not(:disabled):hover:before {
+    color: #A94442; }
+  button.icon-ok:not(:disabled):hover:before,
+  a[class^="button"].icon-ok:not(:disabled):hover:before {
+    color: #3c763d; }
+  button i,
+  a[class^="button"] i {
+    display: inline-block; }
+    button i.transform-rotate-90,
+    a[class^="button"] i.transform-rotate-90 {
+      -webkit-transform: rotate(90deg);
+      -moz-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+      -o-transform: rotate(90deg);
+      transform: rotate(90deg); }
+    button i.transform-rotate-180,
+    a[class^="button"] i.transform-rotate-180 {
+      -webkit-transform: rotate(180deg);
+      -moz-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+      -o-transform: rotate(180deg);
+      transform: rotate(180deg); }
+    button i.transform-rotate-270,
+    a[class^="button"] i.transform-rotate-270 {
+      -webkit-transform: rotate(270deg);
+      -moz-transform: rotate(270deg);
+      -ms-transform: rotate(270deg);
+      -o-transform: rotate(270deg);
+      transform: rotate(270deg); }
+    button i.transform-flip-horizontal,
+    a[class^="button"] i.transform-flip-horizontal {
+      -webkit-transform: scale(-1, 1);
+      -moz-transform: scale(-1, 1);
+      -ms-transform: scale(-1, 1);
+      -o-transform: scale(-1, 1);
+      transform: scale(-1, 1); }
+    button i.transform-flip-vertical,
+    a[class^="button"] i.transform-flip-vertical {
+      -webkit-transform: scale(1, -1);
+      -moz-transform: scale(1, -1);
+      -ms-transform: scale(1, -1);
+      -o-transform: scale(1, -1);
+      transform: scale(1, -1); }
+
+/* If the icon need to have a different color when :hover and :active: Add the correct class-name */
+.hover-red:hover, .hover-red:active {
+  color: #A94442; }

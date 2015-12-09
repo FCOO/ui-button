@@ -1,0 +1,39 @@
+{
+  "name": "ui-button",
+  "version": "0.0.1",
+  "homepage": "https://github.com/FCOO/ui-button",
+  "authors": [
+    "Niels Holt nho@fcoo.dk"
+  ],
+  "description": "",
+  "main": [
+    "dist/ui-button.min.js",
+    "dist/ui-button.min.css"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/FCOO/ui-button.git"
+  },
+  "dependencies": {
+    "jquery": "latest",
+    "ui-icon-font": "fcoo/ui-icon-font#~1.0.0",
+    "fcoo-namespace": "fcoo/fcoo-namespace#~1.0.1"
+  },
+  "devDependencies": {
+    "bourbon": "latest",
+    "modernizr-mixin": "latest",
+    "mathsass": "latest",
+    "ui-common-scss": "fcoo/ui-common-scss#~1.1.0"
+  },
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "moduleType": [
+    "es6"
+  ]
+}
