@@ -73,6 +73,16 @@ a[class^="button"] {
   text-decoration: none;
   color: #3c3c3c;
   cursor: pointer;
+  margin-bottom: 0;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  background-image: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   /******************************
 	button when disabled
 	*******************************/

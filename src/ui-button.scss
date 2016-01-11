@@ -54,6 +54,29 @@ a[class^="button"]  {
 	color	: $color-black3;
 	cursor: pointer;
 
+
+	//From bootstrap
+	margin-bottom: 0; // For input.btn
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+  white-space: nowrap;
+  @include user-select(none);
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	//Left-margin if the button is next to another button
 	& + a[class^="button"], & + button[class^="button"] {	margin-left: $margin; }
 
